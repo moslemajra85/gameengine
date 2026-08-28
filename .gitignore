@@ -1,0 +1,19 @@
+# Build output
+gameengine
+*.o
+*.obj
+*.d
+
+# IDE/editor settings
+.vscode/
+.idea/
+compile_commands.json
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Local environment files
+.env
+.env.*
+!.env.example
