@@ -1,9 +1,9 @@
 
+#include <iostream>
 #include "Game.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_error.h>
 #include <SDL2/SDL_video.h>
-#include <iostream>
 
 Game::Game() {
   isRunning = false;
@@ -20,9 +20,13 @@ void Game::Initialize() {
   }
 
   // create a window
+  SDL_DisplayMode displayMode;
+  SDL_GetDesktopDisplayMode(0, &displayMode);
+  windowWidth = 800; //displayMode.w;
+  windowHeight = 600;// displayMode.h;
   window =
       SDL_CreateWindow("My Engine", SDL_WINDOWPOS_CENTERED,
-                       SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_BORDERLESS);
+                       SDL_WINDOWPOS_CENTERED,windowWidth, windowHeight, SDL_WINDOW_BORDERLESS);
 
   if (!window) {
     std::cerr << "Failed to create window! Error" << SDL_GetError()
@@ -38,6 +42,7 @@ void Game::Initialize() {
     exit(1);
   }
 
+  SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
   isRunning = true;
 }
 
